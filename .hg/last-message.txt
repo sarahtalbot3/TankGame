@@ -1,0 +1,4 @@
+I made an image of a moving tank
+
+:wq
+
