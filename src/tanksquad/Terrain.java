@@ -66,6 +66,7 @@ public class Terrain {
 			this.yRealLength = yLength * blockHeight;
 			this.terrainArea = new Rectangle(this.x, this.y, this.xRealLength, this.yRealLength);
 		}
+		
 	}
 	
 	private void LoadContent() { 
@@ -75,6 +76,8 @@ public class Terrain {
             terrainImg = ImageIO.read(terrainImgUrl);
             blockHeight = terrainImg.getHeight();
             blockWidth = terrainImg.getWidth();
+            
+            
             
            
         }

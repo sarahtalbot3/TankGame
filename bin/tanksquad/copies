@@ -1,0 +1,6 @@
+while (Game.tank.tankArea.intersects(terrainArea) || Game.tank2.tankArea.intersects(terrainArea)) {
+			LoadTerrain(n);
+			this.xRealLength = xLength * blockWidth;
+			this.yRealLength = yLength * blockHeight;
+			this.terrainArea = new Rectangle(this.x, this.y, this.xRealLength, this.yRealLength);
+		}

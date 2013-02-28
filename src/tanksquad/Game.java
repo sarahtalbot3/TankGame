@@ -70,15 +70,23 @@ public class Game {
     {
     	tank = new Tank();
     	tank2 = new Tank2();
+    	
     	terrain1 = new Terrain(1);
+    	
+    	System.out.println("initialized");
+    	
     	terrain2 = new Terrain(0);
+    	
+    	
+
     	
     	shotList = new ArrayList<Shot>();
     	shotList2 = new ArrayList<Shot>();
     	
     	scoreTank = 0;
     	scoreTank2 = 0;
-
+    	
+    
     }
     
     /**
@@ -86,6 +94,7 @@ public class Game {
      */
     private void LoadContent()
     {
+    	System.out.println("CONTENTLOADED");
     
     }    
     
@@ -203,13 +212,9 @@ public class Game {
     		
     		shot.Update();
     		
-    		if (shot.isItLeftScreen())
-    			shotList.remove(i);
-    		
     		Rectangle shotRectangle = new Rectangle(shot.x, shot.y, shot.shotWidth, shot.shotHeight);
-    		Rectangle tank2Rectangle = new Rectangle(tank2.x, tank2.y, tank2.tankWidth, tank2.tankHeight);
     		
-    		if (shotRectangle.intersects(tank2Rectangle)) {
+    		if (tank2.tankArea.intersects(shotRectangle)) {
     			scoreTank++;
     			shotList.remove(i);
     			tank2.resetTank();
@@ -220,8 +225,12 @@ public class Game {
     			if (shotRectangle.intersects(terrain1.terrainArea) || shotRectangle.intersects(terrain2.terrainArea)) {
     			shotList.remove(i);
     			}
-    		}
+    			else {
+    				if (shot.isItLeftScreen())
+    					shotList.remove(i);
     		
+    			}
+    		}
     		
     		
     	}
@@ -233,13 +242,9 @@ public class Game {
     		
     		shot.Update();
     		
-    		if (shot.isItLeftScreen())
-    			shotList2.remove(i);
-    		
     		Rectangle shotRectangle = new Rectangle(shot.x, shot.y, shot.shotWidth, shot.shotHeight);
-    		Rectangle tankRectangle = new Rectangle(tank.x, tank.y, tank.tankWidth, tank.tankHeight);
     		
-    		if (shotRectangle.intersects(tankRectangle)) {
+    		if (tank.tankArea.intersects(shotRectangle)) {
     			scoreTank2++;
     			shotList2.remove(i);
     			tank.resetTank();
@@ -251,7 +256,14 @@ public class Game {
     				if (shotRectangle.intersects(terrain1.terrainArea) || shotRectangle.intersects(terrain2.terrainArea)) {
     					shotList2.remove(i);
     				}
+    				else {
+    					if (shot.isItLeftScreen())
+    						shotList2.remove(i);
+    				}
     		}
+    		
+    		
+    		
     	}
     }
     

@@ -165,5 +165,19 @@ public class Tank {
 		x = (int) (Math.random() * (Framework.frameWidth - tankWidth));
 		y = (int) (Math.random() * (Framework.frameHeight - tankHeight));
 		theta = (int) (Math.random() * 2 * Math.PI);
+		tankArea.reset();
+		AffineTransform affineTransform = new AffineTransform();
+		tankRec = new Rectangle(x, y, tankWidth, tankHeight);
+		affineTransform.rotate(theta, x + (tankWidth / 2) , y + (tankHeight / 2));
+        PathIterator i = tankRec.getPathIterator(affineTransform);
+        int j = 0;
+        while (!i.isDone()) {
+            double[] xy = new double[2];
+            i.currentSegment(xy);
+            if (j < 4) {
+            tankArea.addPoint((int) xy[0], (int) xy[1]);}
+            j++;
+            i.next();
+        }
 	}
 }
