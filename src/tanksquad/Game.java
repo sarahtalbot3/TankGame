@@ -126,12 +126,12 @@ public class Game {
     	isTank2Shooting(gameTime);
     	updateShots2();
     	
-    	if (scoreTank == 20) {
+    	if (scoreTank > 19) {
     		winner = "PLAYER 1";
     		Framework.gameState = Framework.GameState.GAMEOVER;
     	}
     	
-    	if (scoreTank2 == 20) {
+    	if (scoreTank2 > 19) {
     		winner = "PLAYER 2";
     		Framework.gameState = Framework.GameState.GAMEOVER;
     	}
@@ -194,6 +194,7 @@ public class Game {
     		
     		Shot s = new Shot(tank.cannonX, tank.cannonY, - tank.theta);
     		shotList.add(s);
+    		Sound.playSound("/tanksquad/res/LASER1.wav");
     	}
     }
     
@@ -203,6 +204,7 @@ public class Game {
     		
     		Shot s = new Shot(tank2.cannonX, tank2.cannonY, - tank2.theta );
     		shotList2.add(s);
+    		Sound.playSound("/tanksquad/res/LASER1.wav");
     	}
     }
     private void updateShots() {
