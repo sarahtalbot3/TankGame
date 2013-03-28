@@ -73,8 +73,6 @@ public class Game {
     	
     	terrain1 = new Terrain(1);
     	
-    	System.out.println("initialized");
-    	
     	terrain2 = new Terrain(0);
     	
     	
@@ -94,7 +92,6 @@ public class Game {
      */
     private void LoadContent()
     {
-    	System.out.println("CONTENTLOADED");
     
     }    
     
