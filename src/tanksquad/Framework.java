@@ -5,6 +5,13 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.imageio.ImageIO;
 
 /**
  * Framework that controls the game (Game.java) that created it, update it and draw it on the screen.
@@ -68,6 +75,8 @@ public class Framework extends Canvas {
     // The actual game
     private Game game;
     
+    private BufferedImage menuImg;
+    
     
     public Framework ()
     {
@@ -101,6 +110,16 @@ public class Framework extends Canvas {
      */
     private void LoadContent()
     {
+    	 try 
+         {
+             URL menuImgUrl = this.getClass().getResource("/tanksquad/res/TankSquad.png");
+             menuImg = ImageIO.read(menuImgUrl);
+             
+         } 
+         catch (IOException ex) 
+         {
+             Logger.getLogger(Framework.class.getName()).log(Level.SEVERE, null, ex);
+         }
     
     }
     
@@ -208,10 +227,11 @@ public class Framework extends Canvas {
                 
             break;
             case MAIN_MENU:
+            	drawMenuBackground(g2d);
             	g2d.setColor(Color.black);
-                g2d.drawString("Use w a s d keys to controle the player 1 tank. Space to shoot", frameWidth / 2 - 117, frameHeight / 2);
-                g2d.drawString("Use i j k l keys to controle the player 2 tank. Shift to shoot", frameWidth / 2 - 117, frameHeight / 2 + 30);
-                g2d.drawString("Press any key to start the game.", frameWidth / 2 - 117, frameHeight / 2 + 60);
+                g2d.drawString("Use w a s d keys to controle the player 1 tank. Space to shoot", frameWidth / 2 - 117, (frameHeight / 2) + 150);
+                g2d.drawString("Use i j k l keys to controle the player 2 tank. Shift to shoot", frameWidth / 2 - 117, (frameHeight / 2) + 180);
+                g2d.drawString("Press any key to start the game.", frameWidth / 2 - 117, frameHeight / 2 + 210);
             break;
             case OPTIONS:
                 //...
@@ -307,6 +327,10 @@ public class Framework extends Canvas {
     public void mouseClicked(MouseEvent e)
     {
         
+    }
+    
+    private void drawMenuBackground(Graphics2D g2d){
+        g2d.drawImage(menuImg,0, 0, Framework.frameWidth, Framework.frameHeight, null);
     }
 }
 
